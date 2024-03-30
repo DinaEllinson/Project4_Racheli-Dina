@@ -2,7 +2,7 @@ import { executeQuery } from './db.js';
 
 import { addUserQuery,getUserByIdQuery} from './UserQuery.js'
 
-export class TestService {
+export class UserService {
 
     /*async getUser() {
 
@@ -27,7 +27,7 @@ export class TestService {
     async addUser(UserItem) {
 
          const queryUser=addUserQuery();
-         const result= await executeQuery(queryUser,[UserItem])
+         const result= await executeQuery(queryUser,[UserItem.id,UserItem.name,UserItem.userName,UserItem.phone,UserItem.email,UserItem.city])
          return result;
     }
 

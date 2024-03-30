@@ -1,6 +1,7 @@
 import { UserService } from '../Service/UserService.js'
 
 export class UserController {
+    
 
     async getUserById(req, res) {
 

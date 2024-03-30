@@ -1,14 +1,17 @@
 import express from "express";
+import { todosRouter } from '../Router/todosRouter.js';
 
 import { UserController } from '../Controllers/UserController.js'
 
-const testRouter = express.Router();
+const userRouter = express.Router();
 
-const UserController = new UserController()
+const userController = new UserController()
+const app=express();
+app.use(':id/todos',todosRouter)
 
-testRouter.get("/users/:id", UserController.getUserById)
+userRouter.get("/:id", userController.getUserById)
 
-testRouter.post("/users", UserController.addUser)
+userRouter.post("/", userController.addUser)
 
 //testRouter.delete("/:id", UserController.deleteUser)
 
@@ -16,6 +19,6 @@ testRouter.post("/users", UserController.addUser)
 
 export {
 
-    UserRouter
+    userRouter
 
 }
