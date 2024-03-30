@@ -1,37 +1,21 @@
 import express from "express";
+
 import { UserController } from '../Controllers/UserController.js'
-const userRouter = express.Router();
-
-userRouter.get('/users/:id', (req, res) => {
-     
-})
- 
-
-userRouter.post('/users', (req, res) => {
-
-})
-
-export default userRouter
-
-
-import express from "express";
-
-import { TestController } from '../controllers/testController.js'
 
 const testRouter = express.Router();
 
-const testcontroller = new TestController()
+const UserController = new UserController()
 
-testRouter.get("/user/:id", testcontroller.getTestById)
+testRouter.get("/users/:id", UserController.getUserById)
 
-testRouter.post("/", testcontroller.addTest)
+testRouter.post("/users", UserController.addUser)
 
-testRouter.delete("/:id", testcontroller.deleteTest)
+//testRouter.delete("/:id", UserController.deleteUser)
 
-testRouter.put("/:id", testcontroller.updateTest)
+//testRouter.put("/:id", UserController.updateUser)
 
 export {
 
-    testRouter
+    UserRouter
 
 }
