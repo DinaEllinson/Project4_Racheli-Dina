@@ -4,7 +4,7 @@ import { passwordsController } from '../Controllers/passwordsController.js'
 
 const passwordsRouter = express.Router();
 
-const passwordsController = new CommentsController()
+const passwordsController = new passwordsController()
 
 commentsRouter.get("/", passwordsController.getComments)
 
