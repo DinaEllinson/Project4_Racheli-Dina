@@ -6,13 +6,13 @@ const todosRouter = express.Router();
 
 const todosController = new TodosController()
 
-todosRouter.get("/", todosController.getTodos)
+todosRouter.get("/:id/todos", todosController.getTodos)
 
-todosRouter.post("/", todosController.addTodo)
+todosRouter.post("/:id/todos", todosController.addTodo)
 
 todosRouter.delete("/:todoId", todosController.deleteTodo)
 
-todosRouter.put("/:todoId", todosController.updateTodo)
+todosRouter.put("/:id/todos", todosController.updateTodo)
 
 export {
 

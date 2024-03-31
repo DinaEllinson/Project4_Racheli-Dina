@@ -1,14 +1,14 @@
-import { TodosService } from '../Service/todosService.js'
+import { PostsService } from '../Service/postsService.js'
 
-export class TodosController {
+export class PostsController {
 
-    async getTodos(req, res) {
+    async getPosts(req, res) {
 
         try {
 
-            const todosService = new TodosService();
+            const postsService = new PostsService();
 
-            const resultItem = await todosService.getTodoById(req.params.id);
+            const resultItem = await postsService.getPostsById(req.params.id);
 
             res.status(200).json({ status: 200, data: resultItem });
 
@@ -28,13 +28,13 @@ export class TodosController {
 
     }
 
-    async addTodo(req, res) {
+    async addPost(req, res) {
 
         try {
 
-            const todosService = new TodosService();
+            const postsService = new PostsService();
 
-             await todosService.addTodo(req.body);
+             await postsService.addPost(req.body);
 
             res.status(200).json({ status: 200 });
 
@@ -54,15 +54,15 @@ export class TodosController {
 
     }
 
-    async deleteTodo(req, res) {
+    async deletePost(req, res) {
 
         try {
 
-            const todosService = new TodosService();
+            const postsService = new PostsService();
 
-            await todosService.deleteTodo(req.params.todoId);
+            await postsService.deletePost(req.params.postId);
 
-            res.status(200).json({ status: 200, data: req.params.id });
+            res.status(200).json({ status: 200, data: req.params.postId });
 
         }
 
@@ -79,15 +79,15 @@ export class TodosController {
         }
 
     }
-    async updateTodo(req, res) {
+    async updatePost(req, res) {
 
         try {
 
-            const todosService = new TodosService();
+            const postsService = new PostsService();
 
-            await todosService.updateTodo(req.body);
+            await postsService.updatePost(req.body);
 
-            res.status(200).json({ status: 200, data: req.params.id });
+            res.status(200).json({ status: 200 });
 
         }
 
