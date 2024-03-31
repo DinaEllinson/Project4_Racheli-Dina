@@ -10,7 +10,7 @@ postsRouter.get("/:id/posts", postsController.getPosts)
 
 postsRouter.post("/:id/posts", postsController.addPost)
 
-postsRouter.delete("/:postId", postsController.deletePost)
+postsRouter.delete("/:id/posts/:postId", postsController.deletePost)
 
 postsRouter.put("/:id/posts", postsController.updatePost)
 

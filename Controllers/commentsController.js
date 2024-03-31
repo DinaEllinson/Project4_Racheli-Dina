@@ -34,7 +34,7 @@ export class CommentsController {
 
             const commentsService = new CommentsService();
 
-             await commentsService.addComment(req.body);
+             await commentsService.addComment(req.body, req.params.postId);
 
             res.status(200).json({ status: 200 });
 

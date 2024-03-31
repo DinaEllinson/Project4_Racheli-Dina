@@ -10,7 +10,7 @@ todosRouter.get("/:id/todos", todosController.getTodos)
 
 todosRouter.post("/:id/todos", todosController.addTodo)
 
-todosRouter.delete("/:todoId", todosController.deleteTodo)
+todosRouter.delete("/:id/todos/:todoId", todosController.deleteTodo)
 
 todosRouter.put("/:id/todos", todosController.updateTodo)
 

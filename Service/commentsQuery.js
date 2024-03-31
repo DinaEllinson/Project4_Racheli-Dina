@@ -2,7 +2,7 @@
 
 function getCommentsByIdQuery() {
 
-    const query = `SELECT * FROM project_db.comments  where userId = ?;`;
+    const query = `SELECT * FROM project_db.comments  where postId = ?;`;
     return query
 
 }

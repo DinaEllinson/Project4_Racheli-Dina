@@ -10,7 +10,7 @@ const userController = new UserController()
 app.use(':id/todos',todosRouter)*/
 
 userRouter.get("/:id", userController.getUserById)
-
+userRouter.get("/:id", userController.getUserById)
 userRouter.post("/", userController.addUser)
 
 //testRouter.delete("/:id", UserController.deleteUser)

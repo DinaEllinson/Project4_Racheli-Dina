@@ -9,10 +9,11 @@ const app = express();
 app.use(express.json());
 app.use('/users',todosRouter);
 app.use('/users',postsRouter);
-app.use('/comments',commentsRouter)
 app.use('/users', userRouter);
 app.use('/todos',todosRouter);
+app.use('/users',commentsRouter);
 app.use('/posts',postsRouter);
+app.use('/comments',commentsRouter)
 
 //app.use(logErrors);
 app.listen(8080, (err) => {
