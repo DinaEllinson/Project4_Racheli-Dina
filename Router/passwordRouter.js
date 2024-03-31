@@ -1,18 +1,18 @@
 import express from "express";
 
-import { passwordsController } from '../Controllers/commentsController.js'
+import { passwordsController } from '../Controllers/passwordsController.js'
 
 const passwordsRouter = express.Router();
 
 const passwordsController = new CommentsController()
 
-commentsRouter.get("/:id/posts/:postId/comments", commentsController.getComments)
+commentsRouter.get("/", passwordsController.getComments)
 
-commentsRouter.post("/:id/posts/:postId/comments", commentsController.addComment)
+commentsRouter.post("/", passwordsController.addComment)
 
-commentsRouter.delete("/:id/posts/:postId/comments/:commentId", commentsController.deleteComment)
+commentsRouter.delete("/", passwordsController.deleteComment)
 
-commentsRouter.put("/:id/posts/:postId/comments", commentsController.updateComment)
+commentsRouter.put("/", passwordsController.updateComment)
 
 export {
 
