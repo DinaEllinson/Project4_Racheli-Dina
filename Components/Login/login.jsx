@@ -18,47 +18,31 @@ import "../style.css";
     }, [userId, navigate]);
 
     function isValidUser(){
-        fetch(`http://localhost:8080/users?username=${name}&&website=${password}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data !== null ) {
-            localStorage.setItem("currentUser", JSON.stringify({
-              "id": `${data[0].id}`,
-              "name": `${data[0].name}`,
-              "username": `${data[0].username}`,
-              "email": `${data[0].email}`,
-            
-                  "street": `${data[0].address.street}`,
-                  "suite": `${data[0].address.suite}`,
-                  "city": `${data[0].address.city}`,
-                  "zipcode": `${data[0].address.zipcode}`,
-            
-                      "lat": `${data[0].address.geo.lat}`,
-                      "lng": `${data[0].address.geo.lng}`,
-              "phone": `${data[0].phone}`,
-
-        
-                  "Cname": `${data[0].company.name}`,
-                  "catchPhrase": `${data[0].company.catchPhrase}`,
-                  "bs": `${data[0].company.bs}`
- 
-          }));
-            setUserId(data[0].id);
-
-          } else {
-            alert("A problem occurred, try again!");
-          }
-        })
-        .catch(error => {
-          console.error("Error fetching user data:", error);
-          alert("An error occurred, try again!");
-        });
+        fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name,
+              password,
+            }),
+          })
+            .then((response) => {
+              if (response.status === 200) {
+                navigate('/')
+              } else if (response.status === 401) {
+                alert("user not found, please register")
+              } else {
+                alert("error")
+              }
+            });
        
       }
 
   return (
     <>
-      <input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)}/>
+      <input type='text' placeholder=' User Name' onChange={(e) => setName(e.target.value)}/>
       <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)}/>
       <button onClick={isValidUser}>Login</button>
       <Link to="/register">New User?</Link>

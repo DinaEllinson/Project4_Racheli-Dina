@@ -1,6 +1,6 @@
 function getPasswordByUsernameQuery() {
 
-    const query = `SELECT * FROM project_db.passwords  where userName = ?;`;
+    const query = `SELECT true FROM project_db.passwords  where userName = ?;`;
     return query
 
 }

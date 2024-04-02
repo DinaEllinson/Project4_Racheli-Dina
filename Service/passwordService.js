@@ -17,9 +17,7 @@ export class PasswordService {
     async getPasswordByUserName(userName) {
 
         const queryPassword = getPasswordByUserName();
-
         const result =  await executeQuery(queryPassword, [userName]);
-
         return result;
 
     }

@@ -9,7 +9,6 @@ function getPostsByIdQuery() {
 function deletePostQuery() {
     const query = `DELETE FROM project_db.posts  where id = ?;`;
     return query
-
 }
 function updatePostQuery() {
 
