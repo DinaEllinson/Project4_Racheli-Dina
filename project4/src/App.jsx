@@ -1,32 +1,31 @@
 import React, { createContext, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import './App.css'; 
-import FailToLoadPage from '../Components/FailToLoadPage.jsx'
+
 //import Login from './Components/Login.jsx'
 //import Register from './Components/Register.jsx'
-import Home from '../Components/Home.jsx'
-import Todos from '../Components/Todos/Todos.jsx'
-import Posts from '../Components/Posts/Posts.jsx'
-import Info from '../Components/Info.jsx'
+import Home  from './Components/Home.jsx'
+import Todos from './Components/Todos/Todos.jsx'
+import Posts from './Components/Posts/Posts.jsx'
+import Info from './Components/Info.jsx'
+import FailToLoadPage from './Components/FailToLoadPage.jsx'
 export const UserContext = createContext();
 
 function App() {
   const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("User")))
-  const currentPage = currentUser ? `/users/${currentUser.id}/home` : "/login";
-  currentPage=`/users/${currentUser.id}/home`;/*! למחוק את השורה באתיד*/
+  const currentPage =/* currentUser ? `/users/${currentUser.id}/home` : "/login";*/
+  `/users/${currentUser.id}/home`;/*! למחוק את השורה באתיד*/
   return (
     <>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to={currentPage} />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+            {/*<Route path="login" element={<Login />} />*/}
+            {/*<Route path="register" element={<Register />} />*/}
             <Route path="users/:userId/home" element={<Home />}>
               <Route path='todos' element={<Todos />} />
               <Route path='posts' element={<Posts />} />
-              <Route path='albums' element={<Albums />} />
-              <Route path='albums/:albumId/photos' element={<Photos />} />
               <Route path='info' element={<Info />} />
             </Route>
             <Route path="*" element={<FailToLoadPage />} />
