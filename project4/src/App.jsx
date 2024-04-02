@@ -4,7 +4,7 @@ import './App.css';
 
 //import Login from './Components/Login.jsx'
 //import Register from './Components/Register.jsx'
-import Home from './Components/home.jsx'
+import Home from './Components/Home.jsx'
 import Todos from './Components/Todos/Todos.jsx'
 import Posts from './Components/Posts/Posts.jsx'
 import Info from './Components/Info.jsx'

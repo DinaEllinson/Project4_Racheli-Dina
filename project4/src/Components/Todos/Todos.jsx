@@ -1,7 +1,7 @@
 import React, { useEffect, useState ,useContext } from "react";
 import TodosDisplay from "./DisplayTodo";
 import AddTodo from "./AddTodo";
-//import { UserContext } from '../../App' ;
+import { UserContext } from '../../App' ;
 function Todos(){
     const { currentUser} = useContext(UserContext)
     const [todos, setTodos] = useState([]);
