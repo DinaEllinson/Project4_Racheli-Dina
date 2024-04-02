@@ -4,7 +4,7 @@ function DeletePost(props) {
 
     function deletePost(ID) {
         try {
-            fetch(`http://localhost:3000/posts/${ID}`, {
+            fetch(`http://localhost:8080/posts/${ID}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

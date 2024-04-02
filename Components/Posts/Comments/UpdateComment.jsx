@@ -23,11 +23,9 @@ function UpdatePost(props) {
     const updateCommentRequest = (key, newValue) => {
         try{ 
         const updatedComment = { ...comment, [key]: newValue };
-        fetch(`http://localhost:3000/comments/${comment.id}`, {
-            method: "PATCH",
-            body: JSON.stringify({
-                [key]: newValue
-            }),
+        fetch(`http://localhost:8080/comments`, {
+            method: "PUT",
+            body: JSON.stringify(updatedComment),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },

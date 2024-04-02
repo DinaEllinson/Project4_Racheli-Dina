@@ -9,7 +9,7 @@ function Posts() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/?userId=${currentUser.id}`)
+    fetch(`http://localhost:8080/posts/?userId=${currentUser.id}`)
       .then((response) => response.json())
       .then((response) => {
         setPosts(response);

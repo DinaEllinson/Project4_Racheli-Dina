@@ -22,11 +22,9 @@ function UpdatePost(props) {
     const updatePostRequest = (key, newValue) => {
         try{
         const updatedPost = { ...post, [key]: newValue };
-        fetch(`http://localhost:3000/posts/${post.id}`, {
-            method: "PATCH",
-            body: JSON.stringify({
-                [key]: newValue
-            }),
+        fetch(`http://localhost:8080/posts`, {
+            method: "PUT",
+            body: JSON.stringify(updatedPost),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },

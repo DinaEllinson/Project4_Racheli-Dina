@@ -10,7 +10,7 @@ function Comments(props) {
   const [error, setError] = useState(null);
   const { postId } = props
   useEffect(() => {
-    fetch(`http://localhost:3000/comments/?postId=${postId}`)
+    fetch(`http://localhost:8080/comments/?postId=${postId}`)
       .then((response) => response.json())
       .then((res) => {
         setComments(res);

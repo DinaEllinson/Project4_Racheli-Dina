@@ -4,7 +4,7 @@ function DeleteComment(props) {
 
     function handleDelete(ID) {
         try{ 
-        fetch(`http://localhost:3000/comments/${ID}`, {
+        fetch(`http://localhost:8080/comments/${ID}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

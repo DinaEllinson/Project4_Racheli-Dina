@@ -7,23 +7,10 @@ function AddPost(props) {
     const { userId } = useParams();
     async function addPost(event) {
         event.preventDefault()
-        const response = await fetch("http://localhost:3000/nextID");
-        const json = await response.json();
-        const { nextPostId } = json[0];
-
-        fetch("http://localhost:3000/nextID/1", {
-            method: "PATCH",
-            body: JSON.stringify({
-                "nextPostId": nextPostId + 1
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-        })
-            .then((response) => response.json())
+         
+             
         let newPost = {
             "userId": userId,
-            "id": nextPostId.toString(),
             "title": event.target[0].value,
             "body": event.target[1].value
         }
@@ -32,7 +19,7 @@ function AddPost(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newPost)
         };
-        fetch(`http://localhost:3000/posts`, newRequest)
+        fetch(`http://localhost:8080/posts`, newRequest)
             .then(data => {
                 setPosts([...posts, newPost]);
 
