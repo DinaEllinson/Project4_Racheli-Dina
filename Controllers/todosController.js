@@ -8,7 +8,7 @@ export class TodosController {
 
             const todosService = new TodosService();
 
-            const resultItem = await todosService.getTodoById(req.params.id);
+            const resultItem = await todosService.getTodoById(req.query.userId);
 
             res.status(200).json({ status: 200, data: resultItem });
 
