@@ -1,4 +1,4 @@
-import { passwordService } from '../Service/passwordService.js'
+/*import { passwordService } from '../Service/passwordService.js'
 
 export class passwordController {
     
@@ -56,4 +56,4 @@ export class passwordController {
     }
 
      
-}
+}*/

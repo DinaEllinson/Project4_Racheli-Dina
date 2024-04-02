@@ -1,10 +1,10 @@
-import { executeQuery } from './db.js';
+/*import { executeQuery } from './db.js';
 
 import { addPasswordQuery,getPasswordByIdQuery} from './PasswordQuery.js'
 
 export class PasswordService {
 
-    /*async getPassword() {
+    async getPassword() {
 
         const queryTest = getPasswordQuery();
 
@@ -12,7 +12,7 @@ export class PasswordService {
 
         return result;
 
-    }*/
+    }
 
     async getPasswordByUserName(userName) {
 
@@ -29,4 +29,4 @@ export class PasswordService {
          return result;
     }
 
-}
+}*/
