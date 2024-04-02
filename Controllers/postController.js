@@ -8,7 +8,7 @@ export class PostsController {
 
             const postsService = new PostsService();
 
-            const resultItem = await postsService.getPostsById(req.params.id);
+            const resultItem = await postsService.getPostsById(req.query.userId);
 
             res.status(200).json({ status: 200, data: resultItem });
 

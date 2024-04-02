@@ -6,13 +6,13 @@ const commentsRouter = express.Router();
 
 const commentsController = new CommentsController()
 
-commentsRouter.get("/:id/posts/:postId/comments", commentsController.getComments)
+commentsRouter.get("/", commentsController.getComments)
 
-commentsRouter.post("/:id/posts/:postId/comments", commentsController.addComment)
+commentsRouter.post("/:postId", commentsController.addComment)
 
-commentsRouter.delete("/:id/posts/:postId/comments/:commentId", commentsController.deleteComment)
+commentsRouter.delete("/:commentId", commentsController.deleteComment)
 
-commentsRouter.put("/:id/posts/:postId/comments", commentsController.updateComment)
+commentsRouter.put("/", commentsController.updateComment)
 
 export {
 

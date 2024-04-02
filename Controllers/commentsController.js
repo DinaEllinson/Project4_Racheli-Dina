@@ -7,7 +7,7 @@ export class CommentsController {
         try {
 
             const commentsService = new CommentsService();
-            const resultItem = await commentsService.getCommentsById(req.params.postId);
+            const resultItem = await commentsService.getCommentsById(req.query.postId);
             res.status(200).json({ status: 200, data: resultItem });
 
         }

@@ -19,7 +19,7 @@ function AddComment(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newComment)
         };
-        fetch(`http://localhost:3000/comments`, newRequest)
+        fetch(`http://localhost:8080/comments`, newRequest)
             .then(data => {
                 console.log(newComment)
                 setComments([...comments, newComment]);

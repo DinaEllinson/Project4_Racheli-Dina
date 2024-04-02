@@ -15,7 +15,7 @@ export class PostsService {
     async addPost(postItem) {
 
          const queryPost=addPostQuery();
-         const result= await executeQuery(queryPost,[postItem.id,postItem.userId,postItem.title,postItem.body])
+         const result= await executeQuery(queryPost,[postItem.userId,postItem.title,postItem.body])
          return result;
     }
     async deletePost(id) {

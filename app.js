@@ -1,25 +1,39 @@
-import express from 'express';
-import { userRouter } from './Router/UserRouter.js'
-import { todosRouter } from './Router/todosRouter.js'
-import { postsRouter } from './Router/postsRouter.js';
-import { commentsRouter } from './Router/commentsRouter.js';
-//import { passwordRouter} from './Router/passwordRouter.js';
+import React, { createContext, useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import './App.css'; 
+import FailToLoadPage from './Components/FailToLoadPage.jsx'
+import Login from './Pages/Login.jsx'
+import Register from './Pages/Register.jsx'
+import Home from './Pages/Home.jsx'
+import Todos from './Pages/Todos/Todos.jsx'
+import Photos from './Pages/Photos/Photos.jsx'
+import Albums from './Pages/Albums/Albums.jsx'
+import Posts from './Pages/Posts/Posts.jsx'
+import Info from './Pages/Info.jsx'
+export const UserContext = createContext();
 
-//import {logErrors} from './middleware/logError.js'
-
-const app = express();
-app.use(express.json());
-//app.use('/login',passwordRouter)
-//app.use('/users',todosRouter);
-app.use('/users',postsRouter);
-app.use('/users', userRouter);
-app.use('/todos',todosRouter);
-app.use('/users',commentsRouter);
-app.use('/posts',postsRouter);
-app.use('/comments',commentsRouter)
-
-//app.use(logErrors);
-app.listen(8080, (err) => {
-    if (err) console.error(err);
-    console.log("Server listening on PORT", 8080);
-});
+function App() {
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("User")))
+  const currentPage = currentUser ? `/users/${currentUser.id}/home` : "/login";
+  return (
+    <>
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to={currentPage} />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="users/:userId/home" element={<Home />}>
+              <Route path='todos' element={<Todos />} />
+              <Route path='posts' element={<Posts />} />
+              <Route path='albums' element={<Albums />} />
+              <Route path='albums/:albumId/photos' element={<Photos />} />
+              <Route path='info' element={<Info />} />
+            </Route>
+            <Route path="*" element={<FailToLoadPage />} />
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
+    </>
+  )
+} export default App

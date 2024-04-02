@@ -11,10 +11,10 @@ export class CommentsService {
 
     }
 
-    async addComment(commentItem, postId) {
+    async addComment(commentItem) {
 
          const queryComment=addCommentQuery();
-         const result= await executeQuery(queryComment,[commentItem.id, postId ,commentItem.name,commentItem.email,commentItem.body])
+         const result= await executeQuery(queryComment,[ commentItem.postId ,commentItem.name,commentItem.email,commentItem.body])
          return result;
     }
     async deleteComment(id) {

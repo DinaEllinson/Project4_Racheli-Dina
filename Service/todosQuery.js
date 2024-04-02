@@ -25,8 +25,8 @@ WHERE
 
 }
 function addTodoQuery(){
-    const query = `INSERT INTO project_db.todos(id,userId,title,completed) 
-    VALUES (?,?,?,?);`;
+    const query = `INSERT INTO project_db.todos(userId,title,completed) 
+    VALUES (?,?,?);`;
     return query;
 }
 export {

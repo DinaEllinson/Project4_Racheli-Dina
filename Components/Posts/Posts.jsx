@@ -1,7 +1,7 @@
 import React, { useState, useEffect ,useContext } from "react";
 import PostsDisplay from "./PostsDisplay";
 import AddPost from "./AddPost";
-import { UserContext } from '../../App';
+import { UserContext } from '../../app_api';
 function Posts() {
   const { currentUser} = useContext(UserContext)
   const [posts, setPosts] = useState([]);

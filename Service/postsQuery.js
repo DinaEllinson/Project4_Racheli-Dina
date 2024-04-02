@@ -23,8 +23,8 @@ WHERE
 
 }
 function addPostQuery(){
-    const query = `INSERT INTO project_db.posts(id,userId,title,body) 
-    VALUES (?,?,?,?);`;
+    const query = `INSERT INTO project_db.posts(userId,title,body) 
+    VALUES (?,?,?);`;
     return query;
 }
 export {

@@ -22,8 +22,8 @@ WHERE
     return query;
 }
 function addCommentQuery(){
-    const query = `INSERT INTO project_db.comments(id,postId,name,email,body) 
-    VALUES (?,?,?,?,?);`;
+    const query = `INSERT INTO project_db.comments(postId,name,email,body) 
+    VALUES (?,?,?,?);`;
     return query;
 }
 export {

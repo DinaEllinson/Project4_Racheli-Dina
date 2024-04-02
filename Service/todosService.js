@@ -17,7 +17,7 @@ export class TodosService {
     async addTodo(TodoItem) {
 
          const queryTodo=addTodoQuery();
-         const result= await executeQuery(queryTodo,[TodoItem.id,TodoItem.userId,TodoItem.title,TodoItem.completed])
+         const result= await executeQuery(queryTodo,[TodoItem.userId,TodoItem.title,TodoItem.completed])
          return result;
     }
     async deleteTodo(id) {
