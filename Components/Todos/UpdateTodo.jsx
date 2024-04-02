@@ -5,7 +5,6 @@ function UpdateTodo(props) {
     const { todo, todos, setTodos } = props;
     const [inUpdate, setInUpdate] = useState(false)
     const [updatedTitle, setUpdatedTitle] = useState(todo.title)
-    const { userId } = useParams();
 
     useEffect(() => { setUpdatedTitle(updatedTitle) }, [inUpdate]);
     const updateTodo = (event) => {
@@ -19,10 +18,10 @@ function UpdateTodo(props) {
     const updateTodoRequest = (key, newValue) => {
     try{
         const updatedTodo = { ...todo, [key]: newValue };
-        fetch(`http://localhost:3000/todos/${todo.id}`, {
+        fetch(`http://localhost:8080/todos/${todo.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', },
-            body: JSON.stringify({ "userId": userId, ...updatedTodo }),
+            body: JSON.stringify({...updatedTodo }),
         })
             .then(response => {
                 if (!response.ok) {

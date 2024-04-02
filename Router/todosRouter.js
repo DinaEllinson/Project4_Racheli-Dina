@@ -8,11 +8,11 @@ const todosController = new TodosController()
 
 todosRouter.get("/", todosController.getTodos)
 
-todosRouter.post("/", todosController.addTodo)
+todosRouter.post("/:userId", todosController.addTodo)
 
-todosRouter.delete("/:id/todos/:todoId", todosController.deleteTodo)
+todosRouter.delete("/:todoId", todosController.deleteTodo)
 
-todosRouter.put("/:id/todos", todosController.updateTodo)
+todosRouter.put("/", todosController.updateTodo)
 
 export {
 

@@ -87,7 +87,7 @@ export class TodosController {
 
             await todosService.updateTodo(req.body);
 
-            res.status(200).json({ status: 200, data: req.params.id });
+            res.status(200).json({ status: 200});
 
         }
 

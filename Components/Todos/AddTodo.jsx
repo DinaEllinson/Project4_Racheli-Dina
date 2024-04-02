@@ -10,19 +10,10 @@ function AddTodo(props) {
         event.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:3000/nextID");
-            const json = await response.json();
-            const { nextTodoId } = json[0];
-
-            await fetch("http://localhost:3000/nextID/1", {
-                method: "PATCH",
-                body: JSON.stringify({ "nextTodoId": nextTodoId + 1 }),
-                headers: { "Content-type": "application/json; charset=UTF-8" },
-            });
+             
 
              const newTodo = {
                 "userId": userId,
-                "id": nextTodoId.toString(),
                 "title": event.target[0].value,
                 "completed": false
             };
@@ -33,7 +24,7 @@ function AddTodo(props) {
                 body: JSON.stringify(newTodo)
             };
 
-            const postResponse = await fetch('http://localhost:3000/todos', requestOptions);
+            const postResponse = await fetch('http://localhost:8080/todos', requestOptions);
             const responseData = await response.json();
 
              if (!postResponse.ok) {

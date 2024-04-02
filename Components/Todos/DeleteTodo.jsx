@@ -3,7 +3,7 @@ function DeleteTodo(props) {
     const { todo, todos, setTodos } = props;
 
     function handleDelete(ID) {
-        fetch(`http://localhost:3000/todos/${ID}`, {
+        fetch(`http://localhost:8080/todos/${ID}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
