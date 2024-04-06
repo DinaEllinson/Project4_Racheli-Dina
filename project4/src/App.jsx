@@ -4,17 +4,18 @@ import './App.css';
 
 //import Login from './Components/Login.jsx'
 //import Register from './Components/Register.jsx'
-import Home from './Components/Home.jsx'
+import Home from './Components/home.jsx'
 import Todos from './Components/Todos/Todos.jsx'
 import Posts from './Components/Posts/Posts.jsx'
-import Info from './Components/Info.jsx'
+//import Info from './Components/Info.jsx'
 import FailToLoadPage from './Components/FailToLoadPage.jsx'
 export const UserContext = createContext();
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("User")))
+ 
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")))
   const currentPage =/* currentUser ? `/users/${currentUser.id}/home` : "/login";*/
-  `/users/1/home`;/*! למחוק את השורה באתיד*/
+  `/users/${currentUser.id}/home`;/*! למחוק את השורה באתיד*/
   return (
     <>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>

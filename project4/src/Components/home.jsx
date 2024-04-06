@@ -6,11 +6,12 @@ import { UserContext } from "../App";
 function Home() {
   const { currentUser, setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate();
-  useEffect(() => {
-    if (currentUser === null) {
-      navigate("/");
-    }
-  }, [currentUser]);
+ useEffect(() => {
+   // if (currentUser === null) {
+      console.log("why is it not working")
+     // navigate("/");
+    //}
+  }, []);
 
   const logOut = () => {
     localStorage.clear();

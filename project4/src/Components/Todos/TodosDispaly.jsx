@@ -7,6 +7,7 @@ function TodosDisplay(props) {
   const [id, setId] = useState('')
   let list = [...todos];
 
+
   function isFiltered(todo) {
     switch (filter) {
       case "All":

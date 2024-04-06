@@ -10,7 +10,7 @@ export class TodosController {
 
             const resultItem = await todosService.getTodoById(req.query.userId);
 
-            res.status(200).json({ status: 200, data: resultItem });
+            res.status(200).json({ resultItem });
 
         }
 
