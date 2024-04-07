@@ -3,13 +3,13 @@ import { UserService } from '../Service/UserService.js'
 export class UserController {
     
 
-    async getUserById(req, res) {
+    async getUserByName(req, res) {
 
         try {
 
             const userService = new UserService();
 
-            const resultItem = await userService.getUserById(req.params.id);
+            const resultItem = await userService.getUserById(req.params.userName);
 
             res.status(200).json({ status: 200, data: resultItem });
 

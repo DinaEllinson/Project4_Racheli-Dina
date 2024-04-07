@@ -6,9 +6,9 @@
 
 }*/
 
-function getUserByIdQuery() {
+function getUserByNameQuery() {
 
-    const query = `SELECT * FROM project_db.users  where id = ?;`;
+    const query = `SELECT * FROM project_db.users  where userName = ?;`;
     return query
 
 }
@@ -19,6 +19,6 @@ function addUserQuery(){
 }
 export {
 
-    addUserQuery,getUserByIdQuery
+    addUserQuery,getUserByNameQuery
 
 }

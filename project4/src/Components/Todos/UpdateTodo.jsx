@@ -18,13 +18,14 @@ function UpdateTodo(props) {
     const updateTodoRequest = (key, newValue) => {
     try{
         const updatedTodo = { ...todo, [key]: newValue };
-        fetch(`http://localhost:8080/todos/${todo.id}`, {
+        fetch(`http://localhost:8080/todos`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify({...updatedTodo }),
         })
             .then(response => {
                 if (!response.ok) {
+                    console.log(todo)
                     console.log(response.status)
                     return
                 }
@@ -35,7 +36,7 @@ function UpdateTodo(props) {
         }
     }
 
-    return (<><strong>completed:</strong>
+    return (todo&&<><strong>completed:</strong>
         <input type='checkbox' checked={todo.completed} onChange={() => updateTodoRequest("completed", !todo.completed)} /><br />
         <button onClick={() => { setInUpdate((prev) => !prev) }}>🖋</button>
         {inUpdate && <form onSubmit={updateTodo}>

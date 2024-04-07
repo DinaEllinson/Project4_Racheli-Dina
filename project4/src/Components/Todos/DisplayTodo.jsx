@@ -4,10 +4,10 @@ import UpdateTodo from "./UpdateTodo"
 
 function DisplayTodo(props) {
     const { todo, todos, setTodos } = props;
-
+console.log(todo)
     return (<>
-        <strong>TodoID:</strong>{todo} <br />
-        <strong>Title: </strong>{todo} <br />
+        <strong>TodoID:</strong>{todo.id} <br />
+        <strong>Title: </strong>{todo.title} <br />
         <UpdateTodo todo={todo} setTodos={setTodos} todos={todos} />
         <DeleteTodo todo={todo} setTodos={setTodos} todos={todos} />
     </>)

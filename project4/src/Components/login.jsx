@@ -3,20 +3,25 @@ import { useState, useEffect, useContext } from 'react'
 import {
   useNavigate, Link
 } from "react-router-dom";
-import "../style.css";
+//import "../style.css";
 
  function Login() {
     const [name, setName] = useState(null);
     const [password, setPassword] = useState(null);
-    const [userId, setUserId] = useState(null);
+    //const [userId, setUserId] = useState(null);
     const navigate=useNavigate()
 
-    useEffect(() => {
+   /* useEffect(() => {
       if (userId) {
         navigate(`/user/${userId}/home`);
       }
-    }, [userId, navigate]);
-
+    }, [ navigate]);*/
+    function getUser(){
+      fetch(`http://localhost:8080/users/?userName=${name}`)
+          .then(response => response.json())
+          .then(data=>{localStorage.setItem("currentUser",data)})
+          .then(data=>navigate(`/users/${data.id}/home`))
+    }
     function isValidUser(){
         fetch('http://localhost:8080/login', {
             method: 'POST',
@@ -24,14 +29,15 @@ import "../style.css";
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              name,
-              password,
+              "userName":name,
+              "password":password
             }),
           })
             .then((response) => {
+              //console.log(response)
               if (response.status === 200) {
-                navigate('/')
-              } else if (response.status === 401) {
+                getUser()
+              } else if (response.status === 200) {
                 alert("user not found, please register")
               } else {
                 alert("error")

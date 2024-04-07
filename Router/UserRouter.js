@@ -9,8 +9,8 @@ const userController = new UserController()
 /*const app=express();
 app.use(':id/todos',todosRouter)*/
 
-userRouter.get("/:id", userController.getUserById)
-userRouter.get("/:id", userController.getUserById)
+userRouter.get("/:userName", userController.getUserByName)
+//userRouter.get("/:id", userController.getUserById)
 userRouter.post("/", userController.addUser)
 
 //testRouter.delete("/:id", UserController.deleteUser)

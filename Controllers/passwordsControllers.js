@@ -1,18 +1,23 @@
-/*import { passwordService } from '../Service/passwordService.js'
+import { PasswordService } from '../Service/passwordService.js'
 
-export class passwordController {
+export class PasswordsController {
     
 
-    async getPasswordById(req, res) {
+    async addPwd(req, res) {
 
         try {
 
-            const passwordService = new passwordService();
-
-            const resultItem = await passwordService.getPasswordById(req.params.id);
-
-            res.status(200).json({ status: 200, data: resultItem });
-
+            const passwordService = new PasswordService();
+            await passwordService.addPassword(req.body);
+           // res.status(200).json({ status: 200 });
+            
+           if(res.status){
+                console.log(res)
+                res.status(200).json({ status: 200 })
+           }
+           else{
+                res.status(409).json({ status: 409 })
+           }
         }
 
         catch (ex) {
@@ -29,14 +34,37 @@ export class passwordController {
 
     }
 
-    async addPassword(req, res) {
+    async updatePwd(req, res) {
 
         try {
 
-            const passwordService = new passwordService();
+            const passwordService = new PasswordService();
 
-             await passwordService.addPassword(req.body);
+            await passwordService.updatePassword(req.body);
 
+            res.status(200).json({ status: 200 });
+
+        }
+
+        catch (ex) {
+
+            const err = {}
+
+            err.statusCode = 500;
+
+            err.message = ex;
+
+            next(err)
+
+        }
+
+    }
+    async deletePwd(req, res) {
+
+        try {
+
+            const passwordService = new PasswordService();
+            await passwordService.deletePassword(req.params.userName);
             res.status(200).json({ status: 200 });
 
         }
@@ -56,4 +84,4 @@ export class passwordController {
     }
 
      
-}*/
+}

@@ -1,19 +1,18 @@
-/*import express from "express";
+import express from "express";
 
-import { passwordsController } from '../Controllers/passwordsController.js'
+import { PasswordsController } from '../Controllers/passwordsControllers.js'
 
 const passwordRouter = express.Router();
 
-const passwordsController = new passwordsController()
+const passwordsController = new PasswordsController()
 
-passwordRouter.get("/", passwordsController.getComments)
-
-passwordRouter.post("/", passwordsController.addComment)
-
+passwordRouter.post("/", passwordsController.addPwd)
+passwordRouter.put("/", passwordsController.updatePwd)
+passwordRouter.delete("/:userName", passwordsController.deletePwd)
 
 
 export {
 
     passwordRouter
 
-}*/
+}

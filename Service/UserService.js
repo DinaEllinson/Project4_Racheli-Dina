@@ -1,6 +1,6 @@
 import { executeQuery } from './db.js';
 
-import { addUserQuery,getUserByIdQuery} from './UserQuery.js'
+import { addUserQuery,getUserByNameQuery} from './UserQuery.js'
 
 export class UserService {
 
@@ -14,11 +14,11 @@ export class UserService {
 
     }*/
 
-    async getUserById(id) {
+    async getUserByName(userName) {
 
-        const queryUser = getUserByIdQuery();
+        const queryUser = getUserByNameQuery();
 
-        const result =  await executeQuery(queryUser, [id]);
+        const result =  await executeQuery(queryUser, [userName]);
 
         return result;
 

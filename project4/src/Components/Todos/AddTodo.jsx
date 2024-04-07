@@ -24,14 +24,15 @@ function AddTodo(props) {
                 body: JSON.stringify(newTodo)
             };
 
-            const postResponse = await fetch('http://localhost:8080/todos', requestOptions);
-            const responseData = await response.json();
+            const postResponse = await fetch('http://localhost:8080/todos/1', requestOptions);
+            const responseData = await postResponse.json();
+             
 
              if (!postResponse.ok) {
                 throw new Error(responseData.message || 'Adding todo failed. Please try again.');
             }
 
-             setTodos([...todos, newTodo]);
+             setTodos([...todos,newTodo]);
             setIsAdding(false);
         } catch (error) {
             console.error("Error adding todo:", error.message);

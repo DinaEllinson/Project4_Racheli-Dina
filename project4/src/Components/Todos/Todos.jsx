@@ -1,5 +1,5 @@
-/*import React, { useEffect, useState ,useContext } from "react";
-import TodosDisplay from "./DisplayTodo";
+import React, { useEffect, useState ,useContext } from "react";
+import TodosDisplay from "./TodosDisplay";
 import AddTodo from "./AddTodo";
 import { UserContext } from '../../App' ;
 function Todos(){
@@ -9,11 +9,11 @@ function Todos(){
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/todos/?userId=${currentUser.id}`)
+        fetch(`http://localhost:8080/todos/?userId=1`)
             .then(response => response.json())
             .then(res => {
                 console.log(res.resultItem);
-                setTodos([{userId: '1', id: '10', title: ' est ratione doloremque quia maiores aut', completed: true},{userId: '1', id: '11', title: ' est ratione doloremque quia maiores aut', completed: true}]);
+                setTodos(res.resultItem);
                 setLoading(false);
                 console.log(todos)
             })
@@ -23,9 +23,17 @@ function Todos(){
                 setLoading(false);
             });
     }, []);
+
+   /* function fetchArr(){
+        fetch(`http://localhost:8080/todos/?userId=1`)
+          .then(response => response.json())
+          .then(data=>{setTodos(data);setLoading(false);})
+        }
+        
+        useEffect(()=>{fetchArr()},[]);*/
     return (
         <>
-            {todos.length<1 ? (
+            {loading ? (
                 <p>Loading...</p>
             ) : (error ? (
                 <p>{error}</p>
@@ -38,7 +46,8 @@ function Todos(){
             ))}
         </>
     );
-} export default Todos*/
+} export default Todos
+/*
 import React, { useEffect, useState, useContext } from "react";
 import TodosDisplay from "./DisplayTodo";
 import AddTodo from "./AddTodo";
@@ -87,4 +96,4 @@ function Todos() {
   );
 }
 
-export default Todos;
+export default Todos;*/
