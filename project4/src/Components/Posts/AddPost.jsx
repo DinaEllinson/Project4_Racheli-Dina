@@ -6,9 +6,7 @@ function AddPost(props) {
     const [isAddNew, setIsAddNew] = useState(false)
     const { userId } = useParams();
     async function addPost(event) {
-        event.preventDefault()
-         
-             
+        event.preventDefault()   
         let newPost = {
             "userId": userId,
             "title": event.target[0].value,

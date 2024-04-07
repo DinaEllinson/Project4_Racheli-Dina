@@ -12,16 +12,10 @@ import FailToLoadPage from './Components/FailToLoadPage.jsx'
 export const UserContext = createContext();
 
 function App() {
-/* localStorage.setItem("currentUser",JSON.stringify( {
-  "userName": "rr",
-  "name": "fff",
-  "email": "ff@ff",
-  "phone":"123",
-  "city":"fvd"
-}))*/
+ 
   const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")))
-  const currentPage =/* currentUser ? `/users/${currentUser.id}/home` : "/login";*/
-  `/users/${currentUser.id}/home`;/*! למחוק את השורה באתיד*/
+  console.log(currentUser);
+  const currentPage = currentUser ? `/users/${currentUser.id}/home` : "/login";
   return (
     <>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>

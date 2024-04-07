@@ -8,7 +8,7 @@ export class CommentsController {
 
             const commentsService = new CommentsService();
             const resultItem = await commentsService.getCommentsById(req.query.postId);
-            res.status(200).json({ status: 200, data: resultItem });
+            res.status(200).json({  resultItem });
 
         }
         catch (ex) {
@@ -31,7 +31,7 @@ export class CommentsController {
 
             const commentsService = new CommentsService();
 
-             await commentsService.addComment(req.body, req.params.postId,);
+             await commentsService.addComment(req.body);
 
             res.status(200).json({ status: 200 });
 
@@ -59,7 +59,7 @@ export class CommentsController {
 
             await commentsService.deleteComment(req.params.commentId);
 
-            res.status(200).json({ status: 200, data: req.params.commentId });
+            res.status(200).json({ status: 200});
 
         }
 

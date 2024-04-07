@@ -7,10 +7,10 @@ function Home() {
   const { currentUser, setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate();
  useEffect(() => {
-   // if (currentUser === null) {
-      console.log("why is it not working")
-     // navigate("/");
-    //}
+    if (currentUser === null) {
+       
+      navigate("/");
+    }
   }, []);
 
   const logOut = () => {

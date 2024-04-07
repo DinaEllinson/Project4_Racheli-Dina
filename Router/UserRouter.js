@@ -9,7 +9,7 @@ const userController = new UserController()
 /*const app=express();
 app.use(':id/todos',todosRouter)*/
 
-userRouter.get("/:userName", userController.getUserByName)
+userRouter.get("/", userController.getUserByName)
 //userRouter.get("/:id", userController.getUserById)
 userRouter.post("/", userController.addUser)
 

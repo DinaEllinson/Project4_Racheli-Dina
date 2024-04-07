@@ -9,9 +9,9 @@ export class UserController {
 
             const userService = new UserService();
 
-            const resultItem = await userService.getUserById(req.params.userName);
+            const resultItem = await userService.getUserByName(req.query.userName);
 
-            res.status(200).json({ status: 200, data: resultItem });
+            res.status(200).json( resultItem );
 
         }
 

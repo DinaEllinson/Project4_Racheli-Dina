@@ -1,7 +1,26 @@
 import { PasswordService } from '../Service/passwordService.js'
 
 export class PasswordsController {
-    
+    async verifyPwd(req, res) {
+        try {
+            const passwordService = new PasswordService();
+            const ans=await passwordService.verifyPassword(req.params.userName,req.params.password);
+            res.status(200).json(ans)
+        }
+
+        catch (ex) {
+
+            const err = {}
+
+            err.statusCode = 500;
+
+            err.message = ex;
+
+            //next(err)
+
+        }
+
+    }
 
     async addPwd(req, res) {
 
@@ -9,15 +28,7 @@ export class PasswordsController {
 
             const passwordService = new PasswordService();
             await passwordService.addPassword(req.body);
-           // res.status(200).json({ status: 200 });
-            
-           if(res.status){
-                console.log(res)
-                res.status(200).json({ status: 200 })
-           }
-           else{
-                res.status(409).json({ status: 409 })
-           }
+            res.status(200).json({ status: 200 })
         }
 
         catch (ex) {
@@ -39,9 +50,7 @@ export class PasswordsController {
         try {
 
             const passwordService = new PasswordService();
-
             await passwordService.updatePassword(req.body);
-
             res.status(200).json({ status: 200 });
 
         }

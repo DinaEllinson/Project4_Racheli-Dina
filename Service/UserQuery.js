@@ -13,8 +13,8 @@ function getUserByNameQuery() {
 
 }
 function addUserQuery(){
-    const query = `INSERT INTO project_db.users(id,name,userName,phone,email,city) 
-    VALUES (?,?,?,?,?,?);`;
+    const query = `INSERT INTO project_db.users(name,userName,phone,email,city) 
+    VALUES (?,?,?,?,?);`;
     return query;
 }
 export {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
+
 function AddTodo(props) {
     const { userId } = useParams();
     const { todos, setTodos } = props;
@@ -24,7 +25,7 @@ function AddTodo(props) {
                 body: JSON.stringify(newTodo)
             };
 
-            const postResponse = await fetch('http://localhost:8080/todos/1', requestOptions);
+            const postResponse = await fetch(`http://localhost:8080/todos`, requestOptions);
             const responseData = await postResponse.json();
              
 

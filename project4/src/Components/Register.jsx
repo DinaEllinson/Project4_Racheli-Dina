@@ -17,8 +17,8 @@ function Register() {
         const user = {
             "userName": userName,
             "name": name,
-            "email": email,
             "phone":phone,
+            "email": email,
             "city":city
         };
         const pwdUser={
@@ -38,7 +38,8 @@ function Register() {
    headers: {
       'Content-Type': 'application/json',
    },
-   body: JSON.stringify(pwdUser)}).then(navigate("/home"))
+   body: JSON.stringify(pwdUser)})
+   .then(navigate(`users/2/home`))
     }
 
   return (

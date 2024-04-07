@@ -13,7 +13,7 @@ function Comments(props) {
     fetch(`http://localhost:8080/comments/?postId=${postId}`)
       .then((response) => response.json())
       .then((res) => {
-        setComments(res);
+        setComments(res.resultItem);
         setLoading(false);
       })
       .catch((err) => {

@@ -8,7 +8,7 @@ function Info() {
       <p>Name: {currentUser.name}</p>
       <p>UserName: {currentUser.username}</p>
       <p>Email: {currentUser.email}</p>
-      <p>City: {currentUser.address.city}</p>
+      <p>City: {currentUser.city}</p>
       <p>Phone: {currentUser.phone}</p>
     </form></div>}</>)
 } export default Info

@@ -8,10 +8,10 @@ import {
  function Login() {
     const [name, setName] = useState(null);
     const [password, setPassword] = useState(null);
-    //const [userId, setUserId] = useState(null);
+    const [userId, setUserId] = useState(null);
     const navigate=useNavigate()
 
-   /* useEffect(() => {
+   /*useEffect(() => {
       if (userId) {
         navigate(`/user/${userId}/home`);
       }
@@ -19,32 +19,25 @@ import {
     function getUser(){
       fetch(`http://localhost:8080/users/?userName=${name}`)
           .then(response => response.json())
-          .then(data=>{localStorage.setItem("currentUser",data)})
-          .then(data=>navigate(`/users/${data.id}/home`))
+          .then(res=>{console.log(...res);
+            localStorage.setItem("currentUser",JSON.stringify(...res));
+            navigate(`/users/${[...res][0].id}/home`)
+          })
     }
     function isValidUser(){
-        fetch('http://localhost:8080/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              "userName":name,
-              "password":password
-            }),
-          })
-            .then((response) => {
-              //console.log(response)
-              if (response.status === 200) {
+        fetch(`http://localhost:8080/login/${name}/${password}`)
+            .then((response) => response.json())
+              .then(response=>{
+                if (response.length>0) {
                 getUser()
-              } else if (response.status === 200) {
+              } else if (response.length ==0) {
                 alert("user not found, please register")
               } else {
                 alert("error")
-              }
-            });
+              }})
+            };
        
-      }
+      
 
   return (
     <>

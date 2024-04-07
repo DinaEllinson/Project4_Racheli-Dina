@@ -25,9 +25,8 @@ export class UserService {
     }
 
     async addUser(UserItem) {
-
          const queryUser=addUserQuery();
-         const result= await executeQuery(queryUser,[UserItem.id,UserItem.name,UserItem.userName,UserItem.phone,UserItem.email,UserItem.city])
+         const result= await executeQuery(queryUser,[UserItem.name,UserItem.userName,UserItem.phone,UserItem.email,UserItem.city])
          return result;
     }
 

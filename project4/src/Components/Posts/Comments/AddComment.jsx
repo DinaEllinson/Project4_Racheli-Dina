@@ -3,13 +3,11 @@ import React, { useState } from "react";
 function AddComment(props) {
     const { comments, setComments ,postId} = props;
     const [isAddNew, setIsAddNew] = useState(false)
-    let user=JSON.parse(localStorage.getItem("User"));
+    let user=JSON.parse(localStorage.getItem("currentUser"));
     async function addComment(event) {
         event.preventDefault()
-         
-
         let newComment = {
-            "postId": postId.toString(),
+            "postId": postId,
             "name":event.target[0].value,
             "email":user.email,
             "body": event.target[1].value

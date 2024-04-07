@@ -8,7 +8,6 @@ export class CommentsService {
         const queryComment = getCommentsByIdQuery();
         const result =  await executeQuery(queryComment, [id]);
         return result;
-
     }
 
     async addComment(commentItem) {

@@ -4,6 +4,10 @@ function addPasswordQuery(){
     VALUES (?,?);`;
     return query;
 }
+function verifyPasswordQuery(){
+    const query = `SELECT true FROM project_db.passwords where userName=? and password=?;`;
+    return query;
+}
 
 function deletePasswordQuery() {
     const query = `DELETE FROM project_db.passwords  where userName = ?;`;
@@ -22,6 +26,6 @@ WHERE
 }
 export {
 
-    addPasswordQuery,updatePasswordQuery,deletePasswordQuery
+    verifyPasswordQuery,addPasswordQuery,updatePasswordQuery,deletePasswordQuery
 
 }

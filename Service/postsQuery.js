@@ -2,7 +2,7 @@
 
 function getPostsByIdQuery() {
 
-    const query = `SELECT * FROM project_db.posts  where userId = ?;`;
+    const query = `SELECT * FROM project_db.posts  where usersId = ?;`;
     return query
 
 }
@@ -23,7 +23,7 @@ WHERE
 
 }
 function addPostQuery(){
-    const query = `INSERT INTO project_db.posts(userId,title,body) 
+    const query = `INSERT INTO project_db.posts(usersId,title,body) 
     VALUES (?,?,?);`;
     return query;
 }

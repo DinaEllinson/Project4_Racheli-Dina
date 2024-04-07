@@ -10,7 +10,7 @@ export class PostsController {
 
             const resultItem = await postsService.getPostsById(req.query.userId);
 
-            res.status(200).json({ status: 200, data: resultItem });
+            res.status(200).json({ resultItem });
 
         }
 
@@ -31,13 +31,9 @@ export class PostsController {
     async addPost(req, res) {
 
         try {
-
             const postsService = new PostsService();
-
-             await postsService.addPost(req.body);
-
+            await postsService.addPost(req.body);
             res.status(200).json({ status: 200 });
-
         }
 
         catch (ex) {

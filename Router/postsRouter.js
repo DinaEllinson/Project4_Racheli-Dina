@@ -8,7 +8,7 @@ const postsController = new PostsController()
 
 postsRouter.get("/", postsController.getPosts)
 
-postsRouter.post("/:id", postsController.addPost)
+postsRouter.post("/", postsController.addPost)
 
 postsRouter.delete("/:postId", postsController.deletePost)
 

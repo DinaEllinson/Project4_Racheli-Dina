@@ -8,7 +8,7 @@ const commentsController = new CommentsController()
 
 commentsRouter.get("/", commentsController.getComments)
 
-commentsRouter.post("/:postId", commentsController.addComment)
+commentsRouter.post("/", commentsController.addComment)
 
 commentsRouter.delete("/:commentId", commentsController.deleteComment)
 

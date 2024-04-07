@@ -21,7 +21,7 @@ function UpdateTodo(props) {
         fetch(`http://localhost:8080/todos`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', },
-            body: JSON.stringify({...updatedTodo }),
+            body: JSON.stringify(updatedTodo),
         })
             .then(response => {
                 if (!response.ok) {

@@ -13,7 +13,6 @@ export class PostsService {
     }
 
     async addPost(postItem) {
-
          const queryPost=addPostQuery();
          const result= await executeQuery(queryPost,[postItem.userId,postItem.title,postItem.body])
          return result;

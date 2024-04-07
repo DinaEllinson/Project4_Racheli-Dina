@@ -8,7 +8,7 @@ const todosController = new TodosController()
 
 todosRouter.get("/", todosController.getTodos)
 
-todosRouter.post("/:userId", todosController.addTodo)
+todosRouter.post("/", todosController.addTodo)
 
 todosRouter.delete("/:todoId", todosController.deleteTodo)
 

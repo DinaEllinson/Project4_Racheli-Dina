@@ -12,7 +12,8 @@ function Posts() {
     fetch(`http://localhost:8080/posts/?userId=${currentUser.id}`)
       .then((response) => response.json())
       .then((response) => {
-        setPosts(response);
+        console.log(response.resultItem)
+        setPosts(response.resultItem);
         setLoading(false);
       })
       .catch((err) => {
