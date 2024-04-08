@@ -32,3 +32,17 @@ export function verifyPasswordQuery(){
     const query = `SELECT true FROM project_db.passwords where userName=? and password=?;`;
     return query;
 }
+
+export function getSpecialParamsQuery(itemKeys, query) {
+    let addToQuery = ""
+    itemKeys.forEach(element => {
+        !(typeof query[element] === "undefined") ? addToQuery += (" and " + element + " LIKE '%" + query[element]) + "%'" : ""
+    })
+    if (query._sort)
+        addToQuery = addToQuery + "  ORDER BY " + query._sort
+    if (query._limit)
+        addToQuery = addToQuery + "  LIMIT " + query._limit
+    else if (query._page)
+        addToQuery = addToQuery + "  LIMIT " + query._page
+    return addToQuery
+}

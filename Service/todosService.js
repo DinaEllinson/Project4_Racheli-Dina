@@ -1,21 +1,18 @@
 import { executeQuery } from './db.js';
 
-import { getByValueQuery,deleteQuery,addQuery,updateQuery} from './queries.js'
+import { getByValueQuery,deleteQuery,addQuery,updateQuery,getSpecialParamsQuery} from './queries.js'
 
 export class TodosService {
 
-    async getTodoById(id,limit) {
-        console.log(limit)
-        const queryTodo = getByValueQuery("todos","userId");
-
+    async getTodoById(id,sort) {
+        const queryTodo = getByValueQuery("todos","userId")
+        //queryTodo+= getSpecialParamsQuery(["id","userId","title","completed"],sort);
         const result =  await executeQuery(queryTodo, [id]);
-
         return result;
 
     }
 
     async addTodo(TodoItem) {
-
          const queryTodo=addQuery("todos",["userId","title","completed"]);
          const result= await executeQuery(queryTodo,[TodoItem.userId,TodoItem.title,TodoItem.completed])
          return result;

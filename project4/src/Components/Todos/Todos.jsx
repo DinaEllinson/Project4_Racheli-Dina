@@ -9,7 +9,7 @@ function Todos(){
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/todos/?userId=${currentUser.id}/?_limit=10`)
+        fetch(`http://localhost:8080/todos/?userId=${currentUser.id}/?_sort=title`)
             .then(response => response.json())
             .then(res => {
                 console.log(res.resultItem);

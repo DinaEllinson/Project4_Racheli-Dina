@@ -38,6 +38,31 @@ function Register() {
    headers: {
       'Content-Type': 'application/json',
    },
+   body: JSON.stringifunction postNewUser(){
+        const user = {
+            "userName": userName,
+            "name": name,
+            "phone":phone,
+            "email": email,
+            "city":city
+        };
+        const pwdUser={
+            "userName": userName,
+            "password": pwd
+        }
+      fetch("https://localhost:8080/users", {
+        method: 'POST',
+        headers: {
+           'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    }).then(response => response.json())
+    .then(localStorage.setItem("currentUser",user))
+   fetch("https://localhost:8080/login", 
+   {method: 'POST',
+   headers: {
+      'Content-Type': 'application/json',
+   },
    body: JSON.stringify(pwdUser)})
    .then(navigate(`users/2/home`))
     }

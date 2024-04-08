@@ -111,21 +111,35 @@ import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { UserContext } from "../App";
 
-function RegisterForm(props) {
-  const { setCurrentUser } = useContext(UserContext);
+
+async function RegisterForm(props){
+ const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
   const { userName, password } = props;
   const [error, setError] = useState(null);
-
+  function getUser(user){
+    console.log(user)
+    fetch(`http://localhost:8080/users/?userName=${user}`)
+    .then(response => response.json())
+    .then(res=>{console.log(...res)
+      localStorage.setItem("currentUser",JSON.stringify(...res));
+      console.log(...res)
+      setCurrentUser(...res)
+      navigate(`/users/${[...res][0].id}/home`)})
+    }
+  
+  
   async function confirmRegistration(event) {
+    const pwdUser={
+      "userName": userName,
+      "password": password
+    }
     event.preventDefault();
-
+    
     try {
-      
-
-      const newUser = {
-        "name": event.target[0].value,
+       const newUser = {
         "username": userName,
+        "name": event.target[0].value,
         "email": event.target[1].value,
         "phone": event.target[2].value,
          "city":event.target[3].value
@@ -138,18 +152,25 @@ function RegisterForm(props) {
       };
       const postResponse = await fetch('http://localhost:8080/users', requestOptions);
       const responseData = await postResponse.json();
-
+  
       if (!postResponse.ok) {
         throw new Error(responseData.message || 'Registration failed. Please try again.');
       }
-      localStorage.setItem("User", [JSON.stringify(newUser)]);
-      setCurrentUser(newUser);
-      navigate(`/users/${newUser.id}/home`);
+      fetch("https://localhost:8080/login", 
+      {method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(pwdUser)})
+       
+        
+     getUser(newUser.name);
+      
     } catch (error) {
       console.error("Error during registration:", error.message);
       setError(error.message);
     }
-  }
+  } 
 
   return (
     <>
@@ -169,4 +190,4 @@ function RegisterForm(props) {
   );
 }
 
-export default RegisterForm;
+export default RegisterForm
