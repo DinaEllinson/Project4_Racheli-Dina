@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+/*import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { UserContext } from "../App";
 
@@ -100,6 +100,69 @@ function RegisterForm(props) {
       <input type="text" placeholder="Enter company's catchPhrase..."></input><br />
       <p>Enter bs</p>
       <input type="text" placeholder="Enter company's bs..."></input><br /><div />
+      <button type="submit">Confirm registration</button>
+    </form>
+    </>
+  );
+}
+
+export default RegisterForm;*/
+import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../App";
+
+function RegisterForm(props) {
+  const { setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { userName, password } = props;
+  const [error, setError] = useState(null);
+
+  async function confirmRegistration(event) {
+    event.preventDefault();
+
+    try {
+      
+
+      const newUser = {
+        "name": event.target[0].value,
+        "username": userName,
+        "email": event.target[1].value,
+        "phone": event.target[2].value,
+         "city":event.target[3].value
+      };
+
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUser)
+      };
+      const postResponse = await fetch('http://localhost:8080/users', requestOptions);
+      const responseData = await postResponse.json();
+
+      if (!postResponse.ok) {
+        throw new Error(responseData.message || 'Registration failed. Please try again.');
+      }
+      localStorage.setItem("User", [JSON.stringify(newUser)]);
+      setCurrentUser(newUser);
+      navigate(`/users/${newUser.id}/home`);
+    } catch (error) {
+      console.error("Error during registration:", error.message);
+      setError(error.message);
+    }
+  }
+
+  return (
+    <>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <form onSubmit={confirmRegistration}>
+      <p >Name</p>
+      <input type="text" placeholder="Enter your name..." required></input><br />
+      <p >Email</p>
+      <input type="email" placeholder="Enter your email..." required></input><br />
+      <p>City</p>
+      <input type="text" placeholder="Enter your city..." required></input><br />
+      <p>Phone number</p>
+      <input type="number" placeholder="Enter your phone number..." required></input><br />
       <button type="submit">Confirm registration</button>
     </form>
     </>

@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import {
   useNavigate, Link
@@ -15,7 +15,7 @@ import {
       if (userId) {
         navigate(`/user/${userId}/home`);
       }
-    }, [ navigate]);*/
+    }, [ navigate]);
     function getUser(){
       fetch(`http://localhost:8080/users/?userName=${name}`)
           .then(response => response.json())
@@ -51,4 +51,46 @@ import {
   )
 }
 
-export default Login
+export default Login*/
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
+function Login() {
+
+    const navigate = useNavigate();
+    const { setCurrentUser } = useContext(UserContext);
+    function loginFunc(event) {
+        event.preventDefault();
+        let name = event.target[0].value;
+        let password = event.target[1].value;
+        fetch(`http://localhost:8080/login/${name}/${password}`)
+            .then(response => response.json())
+            .then(response => response.length === 0 ? alert("No such user. Please register") : successLogin(response,name))
+            .catch(error => console.error("Error during login:", error));
+    }
+    
+    function successLogin(user,name) {
+      
+        fetch(`http://localhost:8080/users/?userName=${name}`)
+            .then(response => response.json())
+            .then(res=>{console.log(...res);
+              console.log("user's login was successful")
+              localStorage.setItem("currentUser",JSON.stringify(...res));
+              setCurrentUser(user)
+              navigate(`/users/${[...res][0].id}/home`)
+
+            })
+    }
+
+    return (<>
+        <form onSubmit={loginFunc}>
+            <p>UserName</p>
+            <input placeholder="Enter UserName..." required></input><br />
+            <p >Password</p>
+            <input type="password" placeholder="Enter Pasword..." required></input><br /><div />
+            <button type="submit">Login</button>
+        </form>
+        <h3>To register click </h3>
+        <Link to={"/register"}> Here</Link>
+    </>)
+} export default Login
