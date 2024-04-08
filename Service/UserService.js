@@ -1,22 +1,13 @@
 import { executeQuery } from './db.js';
 
-import { addUserQuery,getUserByNameQuery} from './UserQuery.js'
+import { getByValueQuery,addQuery} from './queries.js'
 
 export class UserService {
 
-    /*async getUser() {
-
-        const queryTest = getUserQuery();
-
-        const result = await executeQuery(queryUser);
-
-        return result;
-
-    }*/
 
     async getUserByName(userName) {
 
-        const queryUser = getUserByNameQuery();
+        const queryUser = getByValueQuery("users","userName");
 
         const result =  await executeQuery(queryUser, [userName]);
 
@@ -25,7 +16,7 @@ export class UserService {
     }
 
     async addUser(UserItem) {
-         const queryUser=addUserQuery();
+         const queryUser=addQuery("users",["name","userName","phone","email","city"]);
          const result= await executeQuery(queryUser,[UserItem.name,UserItem.userName,UserItem.phone,UserItem.email,UserItem.city])
          return result;
     }

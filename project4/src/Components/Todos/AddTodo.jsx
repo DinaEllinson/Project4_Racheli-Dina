@@ -35,6 +35,7 @@ function AddTodo(props) {
 
              setTodos([...todos,newTodo]);
             setIsAdding(false);
+            console.log("todo added")
         } catch (error) {
             console.error("Error adding todo:", error.message);
         }

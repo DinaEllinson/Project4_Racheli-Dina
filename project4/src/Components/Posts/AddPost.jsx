@@ -20,10 +20,10 @@ function AddPost(props) {
         fetch(`http://localhost:8080/posts`, newRequest)
             .then(data => {
                 setPosts([...posts, newPost]);
-
             })
             .catch(error => console.error(error));
         setIsAddNew(false)
+        console.log("post added")
     }
 
     return (

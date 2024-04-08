@@ -1,12 +1,12 @@
 import { executeQuery } from './db.js';
 
-import { addTodoQuery,getTodoByIdQuery,deleteTodoQuery,updateTodoQuery} from './todosQuery.js'
+import { getByValueQuery,deleteQuery,addQuery,updateQuery} from './queries.js'
 
 export class TodosService {
 
-    async getTodoById(id) {
-
-        const queryTodo = getTodoByIdQuery();
+    async getTodoById(id,limit) {
+        console.log(limit)
+        const queryTodo = getByValueQuery("todos","userId");
 
         const result =  await executeQuery(queryTodo, [id]);
 
@@ -16,19 +16,19 @@ export class TodosService {
 
     async addTodo(TodoItem) {
 
-         const queryTodo=addTodoQuery();
+         const queryTodo=addQuery("todos",["userId","title","completed"]);
          const result= await executeQuery(queryTodo,[TodoItem.userId,TodoItem.title,TodoItem.completed])
          return result;
     }
     async deleteTodo(id) {
 
-        const queryTodo=deleteTodoQuery();
+        const queryTodo=deleteQuery("todos","id");
         const result= await executeQuery(queryTodo,[id])
         return result;
    }
    async updateTodo(todoItem) {
 
-    const queryTodo=updateTodoQuery();
+    const queryTodo=updateQuery("todos",["title","completed"]);
     const result= await executeQuery(queryTodo,[todoItem.title,todoItem.completed,todoItem.id])
     return result;
 }

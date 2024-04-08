@@ -21,10 +21,10 @@ async function executeQuery(query, params){
     try {
 
         [results] = await connection.execute(query,params);
-
+        console.log(query+params);
     } catch (err) {
 
-        console.log(err);
+        console.error(err);
 
     }
 

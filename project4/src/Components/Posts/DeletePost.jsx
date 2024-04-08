@@ -13,6 +13,8 @@ function DeletePost(props) {
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
                 }
+                console.log("post deleted")
+
                 setPosts(posts.filter(post => post.id !== ID));
             }).catch(error => {
                 console.error(error);

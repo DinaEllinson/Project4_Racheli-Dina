@@ -30,6 +30,7 @@ function UpdatePost(props) {
             },
         })
             .then((response) => response.json())
+            console.log("post updated")
              setPosts(posts.map((post1) => post1.id === post.id ? updatedPost : post1));
             } catch (error) {
                 console.error("Error updating post:", error.message);

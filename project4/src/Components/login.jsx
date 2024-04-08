@@ -23,6 +23,7 @@ import {
             localStorage.setItem("currentUser",JSON.stringify(...res));
             navigate(`/users/${[...res][0].id}/home`)
           })
+          console.log("user's login was successful")
     }
     function isValidUser(){
         fetch(`http://localhost:8080/login/${name}/${password}`)
@@ -31,7 +32,8 @@ import {
                 if (response.length>0) {
                 getUser()
               } else if (response.length ==0) {
-                alert("user not found, please register")
+                alert("user not found, please register");
+                console.log("access denied")
               } else {
                 alert("error")
               }})

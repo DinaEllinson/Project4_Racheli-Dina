@@ -25,11 +25,10 @@ function UpdateTodo(props) {
         })
             .then(response => {
                 if (!response.ok) {
-                    console.log(todo)
-                    console.log(response.status)
                     return
                 }
                 setTodos(todos.map((todo1) => todo1.id === todo.id ? updatedTodo : todo1));
+                console.log("todo updated")
             })
         } catch (error) {
             console.error("Error Updating todo:", error.message);

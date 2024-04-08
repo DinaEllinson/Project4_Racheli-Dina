@@ -31,7 +31,8 @@ function UpdatePost(props) {
             },
         })
             .then((response) => response.json())
-           setComments(comments.map((prevComment) => prevComment.id === comment.id ? updatedComment : prevComment));
+            console.log("comment updated")
+            setComments(comments.map((prevComment) => prevComment.id === comment.id ? updatedComment : prevComment));
         } catch (error) {
             console.error("Error updating comment:", error.message);
         }   

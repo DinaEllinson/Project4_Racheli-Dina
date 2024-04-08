@@ -13,6 +13,7 @@ function DeleteTodo(props) {
                 throw new Error(`Request failed with status: ${response.status}`);
             }
             setTodos(todos.filter(todo => todo.id !==ID));
+            console.log("todo deleted")
         }).catch(error => {
             console.error(error);
         });

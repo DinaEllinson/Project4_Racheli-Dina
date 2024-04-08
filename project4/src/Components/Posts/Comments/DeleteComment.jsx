@@ -13,6 +13,7 @@ function DeleteComment(props) {
             if (!response.ok) {
                 throw new Error(`Request failed with status: ${response.status}`);
             }
+            console.log("comment deleted")
             setComments(comments.filter(comment => comment.id !==ID));
         }).catch(error => {
             console.error(error);

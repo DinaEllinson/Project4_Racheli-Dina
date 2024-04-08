@@ -24,6 +24,8 @@ function AddComment(props) {
             })
             .catch(error => console.error(error));
         setIsAddNew(false)
+        console.log("comment added")
+
     }
 
     return (
