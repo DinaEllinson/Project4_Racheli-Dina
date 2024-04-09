@@ -5,8 +5,8 @@ import { getByValueQuery,deleteQuery,addQuery,updateQuery,getSpecialParamsQuery}
 export class TodosService {
 
     async getTodoById(id,sort) {
-        const queryTodo = getByValueQuery("todos","userId")
-        //queryTodo+= getSpecialParamsQuery(["id","userId","title","completed"],sort);
+        let queryTodo = getByValueQuery("todos","userId")
+        queryTodo+= getSpecialParamsQuery(["id","userId","title","completed"],sort);
         const result =  await executeQuery(queryTodo, [id]);
         return result;
 
@@ -15,10 +15,11 @@ export class TodosService {
     async addTodo(TodoItem) {
          const queryTodo=addQuery("todos",["userId","title","completed"]);
          const result= await executeQuery(queryTodo,[TodoItem.userId,TodoItem.title,TodoItem.completed])
-         return result;
+         const insertedId = result.insertId;
+         console.log(insertedId)
+         return insertedId;
     }
     async deleteTodo(id) {
-
         const queryTodo=deleteQuery("todos","id");
         const result= await executeQuery(queryTodo,[id])
         return result;

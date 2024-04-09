@@ -23,10 +23,8 @@ export function updateQuery(tableName, itemKeys) {
         keys += `${element} = ?,`;
     })
     let primaryKey = 'id'
-    //if (tableName == 'auth')
-    //    primaryKey = 'userName'
     const query = `UPDATE project_db.${tableName} SET ${keys.slice(0, -1)} WHERE ` + primaryKey + ` = ? `;
-    return query
+    return query;
 }
 export function verifyPasswordQuery(){
     const query = `SELECT true FROM project_db.passwords where userName=? and password=?;`;
@@ -35,9 +33,6 @@ export function verifyPasswordQuery(){
 
 export function getSpecialParamsQuery(itemKeys, query) {
     let addToQuery = ""
-    itemKeys.forEach(element => {
-        !(typeof query[element] === "undefined") ? addToQuery += (" and " + element + " LIKE '%" + query[element]) + "%'" : ""
-    })
     if (query._sort)
         addToQuery = addToQuery + "  ORDER BY " + query._sort
     if (query._limit)

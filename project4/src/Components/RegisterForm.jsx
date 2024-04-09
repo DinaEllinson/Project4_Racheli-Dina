@@ -109,62 +109,61 @@ function RegisterForm(props) {
 export default RegisterForm;*/
 import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../App.jsx";
+//import CryptoJS from 'react-native-crypto';
 
 
-async function RegisterForm(props){
- const { setCurrentUser } = useContext(UserContext);
+
+function RegisterForm(props){
+  console.log("im in form")
+ const { currentUser,setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
   const { userName, password } = props;
   const [error, setError] = useState(null);
   function getUser(user){
-    console.log(user)
     fetch(`http://localhost:8080/users/?userName=${user}`)
-    .then(response => response.json())
-    .then(res=>{console.log(...res)
-      localStorage.setItem("currentUser",JSON.stringify(...res));
-      console.log(...res)
-      setCurrentUser(...res)
-      navigate(`/users/${[...res][0].id}/home`)})
+            .then(response => response.json())
+            .then(res=>{console.log(res);
+              console.log("user's registeration was successful")
+              localStorage.setItem("currentUser",JSON.stringify(...res));
+              setCurrentUser(...res)
+              navigate(`/users/${[...res][0].id}/home`)
+
+            })
     }
-  
-  
-  async function confirmRegistration(event) {
-    const pwdUser={
-      "userName": userName,
-      "password": password
-    }
-    event.preventDefault();
-    
+  function confirmRegistration(event) {
+  event.preventDefault();
     try {
        const newUser = {
-        "username": userName,
         "name": event.target[0].value,
+        "userName": userName,
+        "phone": event.target[3].value,
         "email": event.target[1].value,
-        "phone": event.target[2].value,
-         "city":event.target[3].value
+        "city":event.target[2].value
       };
+      const pwdUser={
+        "userName": userName,
+        "password": password
+      }
 
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUser)
       };
-      const postResponse = await fetch('http://localhost:8080/users', requestOptions);
-      const responseData = await postResponse.json();
+      fetch('http://localhost:8080/users', requestOptions)
+      .then(response=>{response.json()})
+      .then(res=>getUser(userName))
   
-      if (!postResponse.ok) {
-        throw new Error(responseData.message || 'Registration failed. Please try again.');
-      }
-      fetch("https://localhost:8080/login", 
+      
+      fetch("http://localhost:8080/login", 
       {method: 'POST',
       headers: {
          'Content-Type': 'application/json',
       },
-      body: JSON.stringify(pwdUser)})
+      body: JSON.stringify(pwdUser)}).then(console.log("post pwd"))
        
-        
-     getUser(newUser.name);
+  
       
     } catch (error) {
       console.error("Error during registration:", error.message);

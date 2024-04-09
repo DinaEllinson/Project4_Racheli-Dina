@@ -86,7 +86,7 @@ export default Register
 */
 import { useState } from "react";
 import React from "react";
-import RegisterForm from "./RegisterForm";
+import RegisterForm from "./RegisterForm.jsx";
 import { Link } from "react-router-dom";
 
 function Register() {
@@ -114,7 +114,8 @@ function Register() {
                 return response.json();
             })
             .then(response => {
-                if (response.length !== 0) {
+                console.log(response.length)
+                if (response.length != 0) {
                     setError("Username already exists.");
                 } else {
                     setUserName(_userName);

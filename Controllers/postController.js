@@ -1,4 +1,5 @@
 import { PostsService } from '../Service/postsService.js'
+import { logErrors } from '../middleWare/logErrors.js';
 
 export class PostsController {
 
@@ -9,20 +10,12 @@ export class PostsController {
             const postsService = new PostsService();
 
             const resultItem = await postsService.getPostsById(req.query.userId);
-
+            
             res.status(200).json({ resultItem });
 
         }
-
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -37,14 +30,7 @@ export class PostsController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -63,14 +49,7 @@ export class PostsController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -88,14 +67,7 @@ export class PostsController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 

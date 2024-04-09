@@ -1,8 +1,9 @@
 import { TodosService } from '../Service/todosService.js'
+import { logErrors } from '../middleWare/logErrors.js';
 
 export class TodosController {
 
-    async getTodos(req, res) {
+    async getTodos(req, res,next) {
 
         try {
 
@@ -15,14 +16,7 @@ export class TodosController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -33,20 +27,14 @@ export class TodosController {
         try {
 
             const todosService = new TodosService();
-            await todosService.addTodo(req.body);
-            res.status(200).json({ status: 200 });
+            const result=await todosService.addTodo(req.body);
+            console.log(result)
+            res.status(200).json( result );
 
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -65,14 +53,7 @@ export class TodosController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -89,14 +70,7 @@ export class TodosController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 

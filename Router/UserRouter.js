@@ -6,16 +6,9 @@ import { UserController } from '../Controllers/UserController.js'
 const userRouter = express.Router();
 
 const userController = new UserController()
-/*const app=express();
-app.use(':id/todos',todosRouter)*/
-
 userRouter.get("/", userController.getUserByName)
-//userRouter.get("/:id", userController.getUserById)
 userRouter.post("/", userController.addUser)
 
-//testRouter.delete("/:id", UserController.deleteUser)
-
-//testRouter.put("/:id", UserController.updateUser)
 
 export {
 

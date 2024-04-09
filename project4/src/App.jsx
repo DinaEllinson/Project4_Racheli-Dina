@@ -51,6 +51,7 @@ export const UserContext = createContext();
 
 function App() {
   const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")))
+  console.log(currentUser)
   const currentPage = currentUser ? `/users/${currentUser.id}/home` : "/login";
   return (
     <>

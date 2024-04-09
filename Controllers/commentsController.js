@@ -1,5 +1,5 @@
 import { CommentsService } from '../Service/commentsService.js'
-
+import { logErrors } from '../middleWare/logErrors.js';
 export class CommentsController {
 
     async getComments(req, res) {
@@ -7,19 +7,12 @@ export class CommentsController {
         try {
 
             const commentsService = new CommentsService();
-            const resultItem = await commentsService.getCommentsById(req.query.postId);
+            const resultItem = await commentsService.getCommentsById(req.query.postId,req.query);
             res.status(200).json({  resultItem });
 
         }
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -38,14 +31,7 @@ export class CommentsController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
@@ -64,16 +50,10 @@ export class CommentsController {
         }
 
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
+        
 
     }
     async updateComment(req, res) {
@@ -87,16 +67,8 @@ export class CommentsController {
             res.status(200).json({ status: 200 });
 
         }
-
         catch (ex) {
-
-            const err = {}
-
-            err.statusCode = 500;
-
-            err.message = ex;
-
-            next(err)
+            logErrors(ex, req, res); 
 
         }
 
